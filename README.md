@@ -28,6 +28,10 @@ In order to host the api yourself you need to follow these steps:
 ```
 wget https://raw.githubusercontent.com/ATechnoHazard/potatosync/master/docker-compose.yml
 ```
+* Download the .env file
+```
+wget https://raw.githubusercontent.com/ATechnoHazard/potatosync/master/.env
+```
 * Run docker-compose in the directory where you downloaded the file
 ```
 sudo docker-compose up

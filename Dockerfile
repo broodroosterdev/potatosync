@@ -13,7 +13,6 @@ RUN GO111MODULE=on GOOS=linux CGO_ENABLED=0 go build -v -a -installsuffix cgo -o
 
 # Stage 2: Copy binary to scratch 
 FROM scratch
-
 COPY --from=builder /go/bin/potatosync /go/bin/potatosync
-
-ENTRYPOINT ["/go/bin/potatosync"]
+WORKDIR /go/bin
+CMD ["/go/bin/potatosync"]

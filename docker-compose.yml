@@ -6,31 +6,23 @@ services:
     networks:
       - potatonotes
     environment:
-      POSTGRES_USER: potatonotes
+      POSTGRES_USER: notes
       POSTGRES_DB: potatonotes
-      POSTGRES_PASSWORD: potatonotes
+      POSTGRES_PASSWORD: notes
     volumes:
     - db-data:/var/lib/postgresql/data
 
   api:
     image: atechnohazard/potatosync:latest
-    restart: on-failure
-    networks:
-      - potatonotes
+    restart: always
     depends_on:
       - db
-    environment:
-      HEROKU: set
-      db_user: potatonotes
-      db_pass: potatonotes
-      db_name: potatonotes
-      db_host: db
-      db_port: 5432
-      db_type: postgres
-      db_ssl: disable
-      token_password: thisIsTheJwtSecretPassword
+    networks:
+      - potatonotes
+    volumes:
+      - ./.env:/go/bin/.env
     ports:
-    - 4000:4000
+      - 4000:4000
 
 networks:
   potatonotes:
